@@ -10,8 +10,8 @@ app.use(cookieParser());
 app.use(express.json());
 
 
-app.get("/home",verifyJwt, (req , res)=>{
-    res.send(`Home Page ${req.userInfo.email} and ${req.userInfo.username}`)
+app.get("/protectedroute",verifyJwt, (req , res)=>{
+    res.send(`Home Page and Logged In User : ${req.userInfo.email} and ${req.userInfo.username}`)
 })
 
 app.use("/user" , userRoutes);
