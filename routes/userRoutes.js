@@ -76,10 +76,12 @@ routes.post('/login', async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: false,
+            secure: false,  //  false in dev (true in production over HTTPS)
+            sameSite: 'Lax' // or 'None' if cross-site and using secure: true
         })
 
         res.status(200).json({ message: "successfully logined", token: token, user: searchedUser });
+
     }
     catch (err) {
      console.log(err)
